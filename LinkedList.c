@@ -6,7 +6,7 @@ struct Node{
     struct Node *next; //Struct Node type pointer which will point types like it
 };
 
-void linkedlistTraversal(struct Node *ptr){
+void linkedlistTraversal(struct Node *ptr){ //Time Complexity: O(n)
     while(ptr != NULL){
         printf("%d", ptr -> data);
         ptr = ptr -> next;
