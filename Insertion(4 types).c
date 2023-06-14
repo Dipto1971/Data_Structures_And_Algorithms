@@ -60,4 +60,27 @@ struct node *insertAfterNode(struct node *prevNode, int data){
     return head;
 }
 
+int main(){
+    struct node *head;
+    struct node *second;
+    struct node *third;
+    
+    head= (struct node*) malloc(sizeof (struct node)); 
+    second= (struct node*) malloc(sizeof (struct node));
+    third= (struct node*) malloc(sizeof (struct node));
+
+    //Once we do this kind of dynamic memory allocation, we can link Nodes
+    
+    //Link first and second Nodes and so on..
+    head -> data = 7;
+    head -> next = second;
+
+    second -> data = 77;
+    second -> next = third;
+
+    third -> data = 78;
+    third -> next = NULL;
+
+}
+
 
