@@ -11,7 +11,7 @@ struct Node *tail = NULL;
 
 void linkedlistTraversal(struct Node *ptr){ //Time Complexity: O(n)
     while(ptr != NULL){
-        printf("%d", ptr -> value);
+        printf("%d\n", ptr -> value);
         ptr = ptr -> next;
     }
 }
