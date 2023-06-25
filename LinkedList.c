@@ -8,7 +8,7 @@ struct Node{
 
 void linkedlistTraversal(struct Node *ptr){ //Time Complexity: O(n)
     while(ptr != NULL){
-        printf("%d", ptr -> data);
+        printf("%d\n", ptr -> data);
         ptr = ptr -> next;
     }
 }
@@ -29,9 +29,13 @@ int main(){
     head -> data = 7;
     head -> next = second;
 
-    second -> data = 7;
+    second -> data = 77;
     second -> next = third;
 
-    third -> data = 7;
+    third -> data = 78;
     third -> next = NULL; //terminating the third Node
+
+    linkedlistTraversal(head);
+
+    return 0;
 }
