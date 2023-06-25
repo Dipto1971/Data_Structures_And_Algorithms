@@ -1,7 +1,5 @@
 #include<bits/stdc++.h>
-
-
-
+using namespace std;
 struct node{
     int data;
     struct node *next; //Struct Node type pointer which will point types like it
@@ -41,18 +39,47 @@ int main(){
     return 0;
 }
 
-struct node *deleteAtIndex(struct node *head, int index)
+struct node *deleteAtFirst(struct node *head)
 {
-    struct node *p= head;
-    struct node *q= head-> next;
+    struct node *ptr = head;
+    head = head->next;
+    free(ptr);
+    return head;
+};
 
-    for(int i=0; i< index-1; i++){
-        p = p-> next; //deleted element's prevoius element
-        q = q-> next; //q will be the node to be deleted after loop execution
+struct node *deleteAtPosition(struct node *head, int position)
+{
+    struct node *p = head;
+    struct node *q = head->next;
+    int i;
+    for (i = 0; i < position - 1; i++)
+    {
+        p = p->next;
+        q = q->next;
+        if (q->next == NULL && i < position - 2)
+        {
+            cout << "Could not delete node!" << endl;
+            return head;
+        }
     }
-    p-> next = q-> next; //deleted item's next address is now transferred to previous item's next address
-    free(q);
+        p->next = q->next;
+        free(q);
+        return head;
+};
 
+struct node *deleteAtlast(struct node *head)
+{
+    struct node *p = head;
+    struct node *q = head->next;
+
+    while (q->next != NULL)
+    {
+        p = p->next;
+        q = q->next;
+    }
+
+    p->next = NULL;
+    free(q);
     return head;
 };
 
