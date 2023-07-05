@@ -19,6 +19,51 @@ struct node
     int data;
     struct node *next;
 };
+
+void removeDuplicates(node* start)
+{
+    node *ptr1, *ptr2, *dup;
+    ptr1 = start;
+ 
+    /* Pick elements one by one */
+    while (ptr1 != NULL && ptr1->next != NULL) {
+        ptr2 = ptr1;
+ 
+        /* Compare the picked element with rest
+           of the elements */
+        while (ptr2->next != NULL) {
+            /* If matches then delete it */
+            if (ptr1->data == ptr2->next->data) {
+                /* sequence of steps is important here */
+                dup = ptr2->next;
+                ptr2->next = ptr2->next->next;
+                free(dup);
+            }
+            else
+                ptr2 = ptr2->next;
+        }
+        ptr1 = ptr1->next;
+    }
+}
+
+void reverse (struct node** head){
+    struct node* prev = NULL;
+    struct node* current = *head;
+    struct node* next = NULL;
+
+    while(current != NULL){
+        // Store next
+        next = current -> next;
+        // Reverse current node's pointer
+        current->next = prev;
+
+        // Move pointers one position ahead.
+        prev = current;
+        current = next;
+    }
+    *head = prev;
+}
+
 void linkedlistTraversal(struct node *ptr)
 {
     int i = 1;
@@ -160,7 +205,10 @@ int main()
             cout << "Enter 5 Delete the first Node " << endl;
             cout << "Enter 6 to Delete at any Position " << endl;
             cout << "Enter 7 to Delete the last Element " << endl;
+            cout << "Enter 8 to Reverse the linked list " << endl;
+            cout << "Enter 9 to Remove all the duplicate data" << endl;
 
+            cout << "1 to 9? \n -> ";
             int choice;
             cin >> choice;
 
@@ -240,6 +288,20 @@ int main()
             case 7:
             {
                 head = deleteAtlast(head);
+                linkedlistTraversal(head);
+                break;
+            }
+
+            case 8:
+            {
+                reverse(&head);
+                linkedlistTraversal(head);
+                break;
+            }
+            
+            case 9:
+            {
+                removeDuplicates(head);
                 linkedlistTraversal(head);
                 break;
             }
