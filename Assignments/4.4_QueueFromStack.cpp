@@ -1,3 +1,6 @@
+/*Write a program that creates a Queue from a stack. After creation the top of the stack
+will be the front of the queue.*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

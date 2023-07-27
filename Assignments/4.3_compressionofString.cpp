@@ -1,4 +1,5 @@
-/*Write a program that compresses a string by deleting all space characters in the string.
+/*Exercise 5:
+Write a program that compresses a string by deleting all space characters in the string.
 Solve the problem using Queue*/
 
 #include <bits/stdc++.h>

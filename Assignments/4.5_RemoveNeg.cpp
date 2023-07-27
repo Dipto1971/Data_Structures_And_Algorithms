@@ -1,4 +1,6 @@
-/*Delete all Negative Integer
+/*
+Exercise 7:
+Delete all Negative Integer
 Write a program that will take a queue of integers and deletes all negative integers
 without changing the order of the remaining elements in queue.*/
 

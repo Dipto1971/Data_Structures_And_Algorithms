@@ -1,3 +1,12 @@
+/*
+-> Exercise 4:
+Parsing Unmatched Parenthesis
+One of the most important applications of stack is parsing. Parsing is any logic that breaks data
+into independent piece for further processing. So parsing unmatched parenthesis is a common
+problem of parsing. When parentheses are unmatched then there will be two types of error:
+the opening parenthesis is unmatched or the closing parenthesis is missing.
+Write a program using stack that will make sure that all parentheses are well paried.*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

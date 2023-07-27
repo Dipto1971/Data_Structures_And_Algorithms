@@ -8,63 +8,123 @@ Queue is used when things don’t have to be processed immediately but have to b
 processed in First in First out order. This property of Queue makes it also useful in
 following kind of scenarios.*/
 
+/*Exercise 1:
+Create Queue (Enqueue)
+Create queue allocates a new node for the queue. It first initializes the front and rear
+pointers to null. If the queue is empty then insert new node in queue and update both
+the front and rear pointer with the address of the new node and if queue is not empty
+then update the rear pointer with the address of the new node
+Exercise 2:
+Delete node from Queue (Dequeue)
+It begins by checking to make sure there are data in queue. If there are, it takes the
+addresses of the data being deleted , adjust the front pointer and remove the allocated
+memory space.
+Exercise 3:
+Print Queue
+The print function will print the entire queue data.
+Exercise 4:
+CopyQueue
+Write a program that copies the content one queue to another*/
 
 #include <iostream>
 using namespace std;
 
-typedef struct Queue_c {
+typedef struct Queue_c
+{
     int size;
     int front;
     int rear;
-    int* arr;
+    int *arr;
 } Q;
 
-int isFull(Q* q) {
+int isFull(Q *q)
+{
     if (q->rear == q->size - 1)
         return 1;
     else
         return 0;
 }
 
-int isEmpty(Q* q) {
+int isEmpty(Q *q)
+{
     if (q->rear == q->front)
         return 1;
     else
         return 0;
 }
 
-void enqueue(Q* q, int value) {
-    if (!isFull(q)) {
+void enqueue(Q *q, int value)
+{
+    if (!isFull(q))
+    {
         q->rear++;
         q->arr[q->rear] = value;
-    } else {
+    }
+    else
+    {
         cout << "Queue is full!" << endl;
     }
 }
 
-void dequeue(Q* q) {
-    if (!isEmpty(q)) {
+void dequeue(Q *q)
+{
+    if (!isEmpty(q))
+    {
         q->front++;
-    } else {
+    }
+    else
+    {
         cout << "Queue is empty!" << endl;
     }
 }
 
-void printQ(Q* q) {
-    if (isEmpty(q)) {
+int dequeue_val(Q *q)
+{
+    if (!isEmpty(q))
+    {
+        int value = q->arr[q->front + 1];
+        q->front++;
+        return value;
+    }
+}
+
+
+void printQ(Q *q)
+{
+    if (isEmpty(q))
+    {
         cout << "Queue is empty!" << endl;
-    } else {
+    }
+    else
+    {
         int strt = q->front + 1;
         int end = q->rear;
-        while (strt <= end) {
+        while (strt <= end)
+        {
             cout << strt << "th data is " << q->arr[strt] << endl;
             strt++;
         }
     }
 }
 
-int main() {
-    Q* q = new Q;
+void copyQueue(Q *q){
+    Q *q_copy = new Q;
+    q_copy->size = q->size;
+    q_copy->front = q_copy->rear = -1;
+    q_copy->arr = new int[q->size];
+    cout << "Initialized a new Queue of size " << q->size << endl;
+
+    while(!isEmpty(q)){
+        int value = dequeue_val(q);
+        enqueue(q_copy, value);
+    }
+
+    cout << "Queue copied successfully!" << endl;
+}
+
+int main()
+{
+    Q *q = new Q;
     cout << "Enter the size of the Queue: ";
     int n;
     cin >> n;
@@ -76,33 +136,39 @@ int main() {
     int choice, data;
     bool exit = false;
 
-    while (!exit) {
+    while (!exit)
+    {
         cout << "\nQueue Menu:" << endl;
         cout << "1. Enqueue" << endl;
         cout << "2. Dequeue" << endl;
         cout << "3. Print Queue" << endl;
-        cout << "4. Exit" << endl;
+        cout << "4. Make a copy of existing Queue" << endl;
+        cout << "5. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch (choice) {
-            case 1:
-                cout << "Enter data to enqueue: ";
-                cin >> data;
-                enqueue(q, data);
-                break;
-            case 2:
-                dequeue(q);
-                break;
-            case 3:
-                cout << "Queue elements:" << endl;
-                printQ(q);
-                break;
-            case 4:
-                exit = true;
-                break;
-            default:
-                cout << "Invalid choice. Please try again." << endl;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter data to enqueue: ";
+            cin >> data;
+            enqueue(q, data);
+            break;
+        case 2:
+            dequeue(q);
+            break;
+        case 3:
+            cout << "Queue elements:" << endl;
+            printQ(q);
+            break;
+        case 4:
+            copyQueue(q);
+            break;
+        case 5:
+            exit = true;
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
         }
     }
 
