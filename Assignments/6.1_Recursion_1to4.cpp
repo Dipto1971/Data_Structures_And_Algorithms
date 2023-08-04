@@ -1,3 +1,32 @@
+/*Exercise 1:
+Write a C program to find power of any number using recursion.
+Example:
+
+Input any number: 5
+Input power: 2
+Output: 25
+
+Exercise 2:
+Write a C program to find GCD of two numbers using recursion.
+Example:
+
+Input first number: 10
+Input second number: 15
+Output GCD: 5
+
+Exercise 3:
+Write a C program to find LCM of two numbers using recursion.
+Example:
+
+Input first number: 12
+Input second number: 30
+Output LCM: 60
+
+Exercise 4:
+Write a program to check whether a number is palindrome or not using recursion.
+Exercise 5:
+Write a program to reverse a linked list using recursion*/
+
 #include <iostream>
 using namespace std;
 
