@@ -1,5 +1,4 @@
-#include <iostream>
-#include <cstdlib>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct node
@@ -13,7 +12,7 @@ void preorder(struct node *root)
 {
     if (root != NULL)
     {
-        cout << root->data << endl;
+        cout << root->data << " ";
         preorder(root->left);
         preorder(root->right);
     }
@@ -25,7 +24,7 @@ void postorder(struct node *root)
     {
         postorder(root->left);
         postorder(root->right);
-        cout << root->data;
+        cout << root->data << " ";
     }
 }
 
@@ -64,60 +63,74 @@ void inorder(struct node *root)
     if (root != NULL)
     {
         inorder(root->left);
-        cout << root->data;
+        cout << root->data << " ";
         inorder(root->right);
     }
 }
-struct node *createnode(int data)
+
+struct node *findMaxNode(struct node *root)
 {
-    struct node *n; // Creating a node pointer
-    n = (struct node *)malloc(sizeof(struct node));
-    n->data = data;
-    n->left = NULL;
-    n->right = NULL;
-
-    return n; // returning the node
-}
-
-struct node* findMaxNode(struct node* root) {
-    while (root->right != NULL) {
+    while (root->right != NULL)
+    {
         root = root->right;
     }
     return root;
 }
 
-struct node* findMinNode(struct node* root) {
-    while (root->left != NULL) {
+struct node *findMinNode(struct node *root)
+{
+    while (root->left != NULL)
+    {
         root = root->left;
     }
     return root;
 }
 
-struct node* deleteNode(struct node* root, int key) {
-    if (root == NULL) {
+struct node *deleteNode(struct node *root, int key)
+{
+    if (root == NULL)
+    {
         return root;
     }
 
-    if (key < root->data) {
+    if (key < root->data)
+    {
         root->left = deleteNode(root->left, key);
-    } else if (key > root->data) {
+    }
+    else if (key > root->data)
+    {
         root->right = deleteNode(root->right, key);
-    } else {
-        if (root->left == NULL) {
-            struct node* temp = root->right;
-            free(root);
+    }
+    else
+    {
+        if (root->left == NULL)
+        {
+            struct node *temp = root->right;
+            delete root;
             return temp;
-        } else if (root->right == NULL) {
-            struct node* temp = root->left;
-            free(root);
+        }
+        else if (root->right == NULL)
+        {
+            struct node *temp = root->left;
+            delete root;
             return temp;
         }
 
-        struct node* temp = findMinNode(root->right);
+        struct node *temp = findMinNode(root->right);
         root->data = temp->data;
         root->right = deleteNode(root->right, temp->data);
     }
     return root;
+}
+
+void deleteTree(struct node *root)
+{
+    if (root == NULL)
+        return;
+
+    deleteTree(root->left);
+    deleteTree(root->right);
+    delete root;
 }
 
 int main()
@@ -125,7 +138,8 @@ int main()
     struct node *root = NULL;
     int choice, data;
 
-    do {
+    do
+    {
         cout << "Binary Search Tree Operations Menu:" << endl;
         cout << "1. Insert a node" << endl;
         cout << "2. Search for a node" << endl;
@@ -137,22 +151,30 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
+        {
             cout << "Enter data to insert: ";
             cin >> data;
             root = insertNode(root, data);
             break;
+        }
         case 2:
-            cout << "Enter the key to search: ";
+            {
+                cout << "Enter the key to search: ";
             cin >> data;
-            struct node* result = search(root, data);
-            if (result == NULL) {
+            struct node *result = search(root, data);
+            if (result == NULL)
+            {
                 cout << "Node not found!" << endl;
-            } else {
+            }
+            else
+            {
                 cout << "Node found: " << result->data << endl;
             }
             break;
+            }
         case 3:
             cout << "Enter the key to delete: ";
             cin >> data;
@@ -175,6 +197,7 @@ int main()
             break;
         case 7:
             cout << "Exiting the program." << endl;
+            deleteTree(root); // Deallocate memory for the entire tree before exiting.
             break;
         default:
             cout << "Invalid choice! Please enter a valid option." << endl;
