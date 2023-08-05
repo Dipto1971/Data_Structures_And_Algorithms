@@ -1,0 +1,44 @@
+Factorial:
+The factorial of a non-negative integer 'n' is the product of all positive integers less than or equal to 'n'. It is denoted by 'n!' For example, 5! = 5 * 4 * 3 * 2 * 1 = 120.
+
+gcd (Greatest Common Divisor) and lcm (Least Common Multiple):
+gcd is the largest positive integer that divides two or more numbers without leaving a remainder. lcm is the smallest positive integer that is a multiple of two or more numbers. You can find gcd and lcm using standard algorithms like Euclid's algorithm.
+
+Fibonacci Sequence:
+The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. For example: 0, 1, 1, 2, 3, 5, 8, 13, ...
+
+Sum of Array Elements:
+To find the sum of elements in an array, you can loop through each element and accumulate the sum.
+
+Sum of Digits:
+To find the sum of digits of a number, you can extract each digit and add them together.
+
+Product of Digits:
+To find the product of digits of a number, you can extract each digit and multiply them together.
+
+Power Function:
+Implementing a power function involves raising a number to a given exponent. You can use a recursive approach or an iterative approach to calculate the result.
+
+Reverse a Number:
+To reverse a number, you can extract each digit and build the reversed number.
+
+Palindrome Check:
+A number or string is a palindrome if it reads the same backward as forwards.
+
+Count Zero:
+To count the number of zeros in a given number, you can extract each digit and check if it's zero.
+
+Count Steps:
+Not sure what specific steps you are referring to. Could you please provide more context or clarify the operation?
+
+Permutations:
+Permutations are all possible arrangements of a set of elements. For example, given "abc," the permutations would be "abc," "acb," "bac," "bca," "cab," and "cba."
+
+Combination Sum:
+Finding combinations that sum up to a specific target from a set of numbers.
+
+Reverse a Linked List:
+Reversing the order of elements in a linked list.
+
+Tower of Hanoi:
+The Tower of Hanoi is a classic mathematical puzzle involving moving disks from one peg to another with the help of an auxiliary peg, following certain rules.
