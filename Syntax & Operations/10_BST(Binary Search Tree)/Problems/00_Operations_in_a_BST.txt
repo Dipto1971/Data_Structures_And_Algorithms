@@ -1,0 +1,29 @@
+1. **Insertion:** Adding a new node to the tree while maintaining the BST property. You traverse the tree based on comparisons and find the appropriate location for insertion.
+
+2. **Deletion:** Removing a node from the tree while maintaining the BST property. This can be more complex because you need to handle cases where a deleted node has children.
+
+3. **Search:** Checking whether a specific value exists in the BST or not. You traverse the tree by comparing values until you find the desired value or reach a leaf node.
+
+4. **Minimum and Maximum:** Finding the minimum and maximum values in the BST. You usually follow the leftmost and rightmost paths of the tree, respectively.
+
+5. **Successor and Predecessor:** Finding the node with the next higher or lower value than a given node. This is useful for in-order traversal.
+
+6. **In-order Traversal:** Visiting all nodes of the BST in non-decreasing order. This is often used to retrieve data in sorted order.
+
+7. **Pre-order Traversal:** Visiting nodes in the order of root, left, and right. This can be useful for creating a copy of the tree.
+
+8. **Post-order Traversal:** Visiting nodes in the order of left, right, and root. It's often used in deleting nodes from the tree.
+
+9. **Level-order Traversal:** Visiting nodes level by level, from left to right. This is usually implemented using a queue.
+
+10. **Height/Depth:** Finding the height (maximum depth) of the tree. This is crucial for understanding the efficiency of various operations.
+
+11. **Checking if a Tree is a BST:** Verifying whether a given binary tree satisfies the BST property or not.
+
+12. **Balancing:** If not a self-balancing BST, you might implement functions to balance the tree periodically or when certain conditions are met.
+
+13. **Range Queries:** Finding all nodes within a given range. This can be useful in searching for a specific set of values.
+
+14. **Count of Nodes:** Counting the number of nodes in the tree or the number of nodes within a specific range.
+
+15. **Lowest Common Ancestor (LCA):** Finding the lowest common ancestor of two nodes in the tree.
