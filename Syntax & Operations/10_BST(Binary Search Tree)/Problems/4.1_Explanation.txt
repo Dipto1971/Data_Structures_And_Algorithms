@@ -1,0 +1,55 @@
+**Height of a Node:**
+The height of a node in a binary tree is the length of the longest path from that node to a leaf node. In other words, it's the number of edges in the longest path from the node to a leaf. The height of the entire tree is the height of the root node. The height of an empty tree is typically defined as -1.
+
+**Level of a Node:**
+The level of a node in a binary tree represents its position in the tree hierarchy. The root node is considered to be at level 0, its children are at level 1, their children are at level 2, and so on.
+
+Let's take an example binary search tree and explain how the code works:
+
+```plaintext
+        30
+       /  \
+     20    50
+    / \    / \
+  10  25  35  60
+```
+
+In this example, let's say we want to determine the height and level of the node with data value 35.
+
+Here's how the code works:
+
+1. The `createNode` and `insert` functions are used to create the binary search tree by inserting the provided data values.
+
+2. The `findNode` function is used to find the node with the data value 35. It traverses the tree based on the data values, comparing them with the current node's data value and moving to the left or right subtree accordingly.
+
+3. Once the node with data value 35 is found, the `getNodeHeight` function is called to calculate its height. It recursively calculates the height of the node by considering the maximum height of its left and right subtrees.
+
+4. Similarly, the `getNodeLevel` function is called to determine the level of the node with data value 35. It recursively traverses the tree while counting the levels until it finds the target node.
+
+5. Finally, the `main` function prints the results. It prints the level and height of the node with data value 35 using the calculated values from the `getNodeHeight` and `getNodeLevel` functions.
+
+In this example, the node with data value 35 is at level 2 and has a height of 1 (since it's a leaf node). The code calculates and outputs these values accordingly.
+
+###Another Example:
+
+In the given Binary Search Tree (BST), the height is determined by the maximum number of edges that need to be traversed from the root node to reach any leaf node. The level of a node refers to its distance from the root, with the root node being at level 0.
+
+Looking at the provided BST:
+
+```
+          100
+         /    \
+       50     150
+      /  \      /  \
+    30   70   130   170
+   / \   / \   / \    / \
+  20 40 60 80 120 140 160 180
+                    \
+                    165
+```
+
+-The height of this BST is 4, as the longest path from the root to a leaf is from the root node (100) to the leaf node 120.
+
+-The height of the node containing data 165 is 0 as the number of edges from that node to the deepest leaf is 0!
+
+The node 120 is at level 3, because it takes 3 edges to reach it from the root node (100).

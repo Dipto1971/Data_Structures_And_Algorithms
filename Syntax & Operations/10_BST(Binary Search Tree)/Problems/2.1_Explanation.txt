@@ -1,0 +1,68 @@
+Consider the following BST:
+
+```
+       30
+      /  \
+     20   50
+    / \   / \
+   10  25 35 60
+```
+
+We'll use the `findLevel` function to find the level of the target node with value 25 in this tree.
+
+**Function Explanation:**
+
+```c
+int findLevel(struct TreeNode* root, int data, int level) {
+    if (root == NULL) {
+        return -1; // Node not found
+    }
+
+    if (data == root->data) {
+        return level; // Node found, return the level
+    } else if (data < root->data) {
+        return findLevel(root->left, data, level + 1);
+    } else {
+        return findLevel(root->right, data, level + 1);
+    }
+}
+```
+
+- `root`: The current root node being considered during traversal.
+- `data`: The value of the node we want to find the level for.
+- `level`: The current level of the traversal.
+
+**Step-by-Step Explanation:**
+
+1. Initial Call:
+   - `root`: Points to the root node (30).
+   - `data`: Target value is 25.
+   - `level`: Initial level is 0.
+
+2. Comparison:
+   - 25 < 30, so the function moves to the left child.
+
+3. Recursive Call (Left Subtree):
+   - `root`: Now points to the node with value 20.
+   - `data`: Target value is 25.
+   - `level`: Level is incremented to 1.
+
+4. Comparison:
+   - 25 > 20, so the function moves to the right child.
+
+5. Recursive Call (Right Subtree):
+   - `root`: Now points to the node with value 25.
+   - `data`: Target value is 25.
+   - `level`: Level is incremented to 2.
+
+6. Comparison:
+   - 25 == 25, so the function returns the current level (2) as the node is found.
+
+7. Returning:
+   - The value 2 is returned from the innermost call to the outer calls.
+
+8. Final Result:
+   - Back in the `main` function, the level returned by `findLevel` is 2.
+   - It prints: "Node 25 is at level 2."
+
+This example demonstrates how the `findLevel` function recursively traverses the BST, comparing the values and incrementing the level until it finds the target node. It then returns the level at which the node is found.

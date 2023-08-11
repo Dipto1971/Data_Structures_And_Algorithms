@@ -1,0 +1,54 @@
+```
+     1
+    / \
+   2   3
+  / \ / \
+ 4  5 6  7
+```
+
+We'll start with the root node (1) and follow how the recursion calls the `getHeight` function for each node:
+
+1. **root (1):**
+   - `root` is not `NULL`, so we proceed.
+   - Call `getHeight` for the left child (2).
+   - Call `getHeight` for the right child (3).
+   - Calculate the maximum of left and right heights: `max(1, 1)`, which is 1.
+   - Return 1 + 1 = 2 as the height for the root.
+
+2. **left (2):**
+   - `root->left` is not `NULL`, so we proceed.
+   - Call `getHeight` for the left child (4).
+   - Call `getHeight` for the right child (5).
+   - Calculate the maximum of left and right heights: `max(0, 0)`, which is 0.
+   - Return 1 + 0 = 1 as the height for the left child.
+
+3. **right (3):**
+   - `root->right` is not `NULL`, so we proceed.
+   - Call `getHeight` for the left child (6).
+   - Call `getHeight` for the right child (7).
+   - Calculate the maximum of left and right heights: `max(0, 0)`, which is 0.
+   - Return 1 + 0 = 1 as the height for the right child.
+
+4. **left-left (4):**
+   - `root->left->left` is `NULL`, so we return -1 (height of an empty tree).
+
+5. **left-right (5):**
+   - `root->left->right` is `NULL`, so we return -1 (height of an empty tree).
+
+6. **right-left (6):**
+   - `root->right->left` is `NULL`, so we return -1 (height of an empty tree).
+
+7. **right-right (7):**
+   - `root->right->right` is `NULL`, so we return -1 (height of an empty tree).
+
+In summary, the calculated heights for each node are as follows:
+
+- Node 1: Height 2
+- Node 2: Height 1
+- Node 3: Height 1
+- Node 4: Height -1 (empty tree)
+- Node 5: Height -1 (empty tree)
+- Node 6: Height -1 (empty tree)
+- Node 7: Height -1 (empty tree)
+
+So, the overall height of the binary tree is 2, which matches our original visual representation of the tree. The recursion "climbs up" the tree from the leaf nodes to the root node, calculating heights based on the heights of their subtrees.

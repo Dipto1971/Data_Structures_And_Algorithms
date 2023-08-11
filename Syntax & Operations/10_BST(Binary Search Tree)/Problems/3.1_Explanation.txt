@@ -1,0 +1,49 @@
+```
+       30
+      /  \
+     20   50
+    / \   / \
+   10  25 35 60
+```
+
+**Function Explanation:**
+
+```c
+int countNodes(struct TreeNode* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+```
+
+- `root`: The current root node being considered during traversal.
+
+**Step-by-Step Explanation:**
+
+1. Initial Call:
+   - `root`: Points to the root node (30).
+
+2. Recursive Call (Left Subtree):
+   - The function counts nodes in the left subtree:
+     - Left child: Points to the node with value 20.
+     - Left child's left subtree: Node with value 10 (no left or right children).
+     - Left child's right subtree: Node with value 25 (no left or right children).
+   - The left subtree has 3 nodes.
+
+3. Recursive Call (Right Subtree):
+   - The function counts nodes in the right subtree:
+     - Right child: Points to the node with value 50.
+     - Right child's left subtree: Node with value 35 (no left or right children).
+     - Right child's right subtree: Node with value 60 (no left or right children).
+   - The right subtree has 3 nodes.
+
+4. Returning:
+   - The root node has been counted, so the function returns 1 (root node) + 3 (left subtree nodes) + 3 (right subtree nodes) = 7.
+
+5. Final Result:
+   - Back in the `main` function, the node count returned by `countNodes` is 7.
+   - It prints: "Number of nodes in the BST: 7."
+
+In summary, the `countNodes` function recursively traverses the BST and counts the number of nodes by summing up the nodes in the left and right subtrees along with the current node. This example demonstrates how the function works by counting the nodes in the provided BST.
