@@ -1,0 +1,71 @@
+Example Binary Tree:
+```
+         10
+       /    \
+      5     15
+     / \      \
+    3   7     18
+             /
+           16
+```
+
+In this binary tree, let's see how the `countLeafNodes` function works step by step:
+
+1. **Initial Call:**
+   We start by calling the `countLeafNodes` function with the root of the tree (`10`).
+   
+   - `root` is not `NULL`.
+   - Both `left` and `right` pointers of `root` are not `NULL`, so the node is not a leaf node.
+
+2. **Left Subtree (5):**
+   The function recursively calls itself for the left child of the root (`5`).
+   
+   - `root` is not `NULL`.
+   - Both `left` and `right` pointers of `root` are not `NULL`, so the node is not a leaf node.
+
+3. **Left Subtree (3):**
+   The function is called for the left child of `5` (`3`).
+   
+   - `root` is not `NULL`.
+   - Both `left` and `right` pointers of `root` are `NULL`, so the node is a leaf node. The function returns `1`.
+
+4. **Right Subtree (7):**
+   The function is called for the right child of `5` (`7`).
+   
+   - `root` is not `NULL`.
+   - Both `left` and `right` pointers of `root` are `NULL`, so the node is a leaf node. The function returns `1`.
+
+5. **Returning to 5:**
+   The function returns `1` (leaf count from the left subtree) + `1` (leaf count from the right subtree) = `2` for node `5`.
+
+6. **Right Subtree (15):**
+   The function is called for the right child of the root (`15`).
+   
+   - `root` is not `NULL`.
+   - The left pointer is `NULL`, and the right pointer is not `NULL`, so the node is not a leaf node.
+
+7. **Right Subtree (18):**
+   The function is called for the right child of `15` (`18`).
+   
+   - `root` is not `NULL`.
+   - The left pointer is not `NULL`, and the right pointer is not `NULL`, so the node is not a leaf node.
+
+8. **Left Subtree (16):**
+   The function is called for the left child of `18` (`16`).
+   
+   - `root` is not `NULL`.
+   - Both `left` and `right` pointers of `root` are `NULL`, so the node is a leaf node. The function returns `1`.
+
+9. **Returning to 18:**
+   The function returns `1` (leaf count from the left subtree) + `1` (leaf count from the right subtree, considering the subtree rooted at `16`) = `2` for node `18`.
+
+10. **Returning to 15:**
+    The function returns `0` (no leaf nodes in the left subtree) + `2` (leaf count from the right subtree) = `2` for node `15`.
+
+11. **Returning to 10:**
+    The function returns `2` (leaf count from the left subtree) + `2` (leaf count from the right subtree) = `4` for the root node `10`.
+
+12. **Final Output:**
+    The `main` function prints the total number of leaf nodes in the binary tree, which is `4`.
+
+In this example, the `countLeafNodes` function recursively traverses the binary tree, identifying and counting leaf nodes based on the absence of both left and right child nodes.
