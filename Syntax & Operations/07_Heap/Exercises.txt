@@ -1,0 +1,14 @@
+Exercise 1:
+Insert Operation
+If we build a heap then we add a new key at the end of the tree. IF we want to build min heap
+then if new key is greater than its parent, then we don’t need to do anything. Otherwise, we
+need to traverse up to fix the violated heap property.
+Exercise 2:
+Deletion Operation
+Perform deletion operation of Binary Heap
+Exercise 3:
+Smallest and Largest Element
+Find maximum and minimum element from Heap
+Exercise 4:
+Heap Sort
+Write a program that will sort given list of data using Heap Sort algorithm.
