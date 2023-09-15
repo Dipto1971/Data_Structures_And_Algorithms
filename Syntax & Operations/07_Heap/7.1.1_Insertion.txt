@@ -1,0 +1,62 @@
+Here's the step-by-step process:
+
+Step 1: Insert 9
+```
+         9
+```
+
+Step 2: Insert 4
+```
+         4
+        /
+       9
+```
+
+Step 3: Insert 7
+```
+         4
+        / \
+       9   7
+```
+
+Step 4: Insert 1
+```
+         1
+        / \
+       9   7
+      /
+     4               
+```
+
+Step 5: Insert 2
+```
+         1
+        / \
+       2   7
+      / \
+     4   9
+```
+
+Step 6: Insert 6
+```
+         1
+        / \
+       2   7
+      / \ /
+     4  9 6
+```
+
+Step 7: Insert 5
+```
+         1
+        / \
+       2   5
+      / \ / \
+     4  9 6  7
+```
+
+The final tree represents the min-heap with the input elements `{9, 4, 7, 1, 2, 6, 5}`. The tree maintains the min-heap property: each parent node is smaller than its child nodes.
+
+The array-based representation of this min-heap would be: `[-1, 1, 2, 5, 9, 6, 7]`, where the first element `-1` is a placeholder and not part of the heap.
+
+You can observe how each element is inserted and then swapped upwards if necessary to maintain the min-heap property. This ensures that the root of the tree (and the first element in the array) is always the smallest element in the heap.
