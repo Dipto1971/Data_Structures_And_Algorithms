@@ -3,7 +3,7 @@ using namespace std;
 
 class RadixTreeNode {
 public:
-    unordered_map<char, RadixTreeNode*> children;
+    std::unordered_map<char, RadixTreeNode*> children;
     bool isEndOfWord;
 
     RadixTreeNode() : isEndOfWord(false) {}
@@ -29,7 +29,7 @@ public:
     }
 
     // Insert a string into the radix tree
-    void insert(const string& key) {
+    void insert(const std::string& key) {
         RadixTreeNode* node = root;
 
         for (char c : key) {
@@ -43,7 +43,7 @@ public:
     }
 
     // Search for a string in the radix tree
-    bool search(const string& key) {
+    bool search(const std::string& key) {
         RadixTreeNode* node = root;
 
         for (char c : key) {
@@ -57,13 +57,13 @@ public:
     }
 
     // Delete a string from the radix tree
-    void remove(const string& key) {
+    void remove(const std::string& key) {
         removeHelper(root, key, 0);
     }
 
 private:
     // Recursive helper function for deletion
-    bool removeHelper(RadixTreeNode* node, const string& key, int depth) {
+    bool removeHelper(RadixTreeNode* node, const std::string& key, int depth) {
         if (node == nullptr) {
             return false; // Key not found
         }
@@ -89,6 +89,7 @@ private:
     }
 };
 
+
 int main() {
     RadixTree tree;
 
@@ -98,15 +99,10 @@ int main() {
     tree.insert("banana");
     tree.insert("bat");
 
-    // Search for strings
-    cout << "Search 'apple': " << (tree.search("apple") ? "Found" : "Not Found") << endl;
-    cout << "Search 'app': " << (tree.search("app") ? "Found" : "Not Found") << endl;
-    cout << "Search 'banana': " << (tree.search("banana") ? "Found" : "Not Found") << endl;
-    cout << "Search 'batman': " << (tree.search("batman") ? "Found" : "Not Found") << endl;
-
-    // Delete a string and search again
-    tree.remove("apple");
-    cout << "Search 'apple' after deletion: " << (tree.search("apple") ? "Found" : "Not Found") << endl;
+    std::cout << "Search 'apple': " << (tree.search("apple") ? "Found" : "Not Found") << std::endl;
+    std::cout << "Search 'app': " << (tree.search("app") ? "Found" : "Not Found") << std::endl;
+    std::cout << "Search 'banana': " << (tree.search("banana") ? "Found" : "Not Found") << std::endl;
+    std::cout << "Search 'batman': " << (tree.search("batman") ? "Found" : "Not Found") << std::endl;
 
     return 0;
 }
