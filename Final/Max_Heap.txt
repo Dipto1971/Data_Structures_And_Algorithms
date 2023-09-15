@@ -1,0 +1,59 @@
+
+#include <limits.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+// Returns true if arr[i..n-1] represents a max-heap
+bool isHeap(int arr[], int i, int n)
+{
+    // Base case: If a node is a leaf node, return true
+    if (i >= (n - 2) / 2)
+        return true;
+
+    // Compare the current node with its children
+    // If the current node is greater than or equal to its children
+    // and the left and right subtrees are also max-heaps, return true
+    if (arr[i] >= arr[2 * i + 1] &&
+        arr[i] >= arr[2 * i + 2] &&
+        isHeap(arr, 2 * i + 1, n) &&
+        isHeap(arr, 2 * i + 2, n))
+        return true;
+
+    // If any of the above conditions fails, return false
+    return false;
+}
+
+int main()
+{
+    int arr[] = {90, 15, 10, 7, 12, 2, 7, 3};
+    int n = sizeof(arr) / sizeof(int) - 1;
+
+    isHeap(arr, 0, n) ? printf("Yes") : printf("No");
+
+    return 0;
+}
+
+1. Initially, `isHeap(arr, 0, n)` is called with `i` as 0 and `n` as 7 (since `n` is the size of the array minus 1).
+2. In the first recursive call, it checks the condition for the root node (index 0):
+
+   - `arr[0]` is 90
+   - `arr[2 * 0 + 1]` is 15
+   - `arr[2 * 0 + 2]` is 10
+
+   Since 90 is greater than or equal to both its children, it proceeds to check the left and right subtrees.
+3. In the left subtree (`isHeap(arr, 2 * 0 + 1, n)`), it checks the condition for the node at index 1:
+
+   - `arr[1]` is 15
+   - `arr[2 * 1 + 1]` is 7
+   - `arr[2 * 1 + 2]` is 12
+
+   Since 15 is greater than or equal to both its children, it proceeds to check their subtrees.
+4. The recursion continues in a similar manner for the left subtree and then the right subtree.
+
+Now, let's calculate the output:
+
+- All nodes satisfy the max-heap property, so it returns `true`.
+
+As a result, the program will print "Yes" because the given array represents a binary max-heap.
+
+The output of the program is: "Yes".

@@ -162,7 +162,7 @@ int main()
         }
         case 2:
             {
-                cout << "Enter the key to search: ";
+            cout << "Enter the key to search: ";
             cin >> data;
             struct node *result = search(root, data);
             if (result == NULL)
