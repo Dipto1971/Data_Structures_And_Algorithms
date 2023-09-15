@@ -106,7 +106,7 @@ void BuildMaxHeap(int arr[], int n, int heap[]) {
 }
 
 int main() {
-    int arr[] = {9, 4, 7, 1, 2, 6, 5};
+    int arr[] = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     int minHeap[n + 1];
