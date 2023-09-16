@@ -47,6 +47,7 @@ Menu:
 3. Check time left for servers to become free
 4. Forward calls manually
 5. Exit
+
 Enter your choice: 1
 
 Enter the call duration (in seconds): 300
