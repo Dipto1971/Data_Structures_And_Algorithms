@@ -1,6 +1,6 @@
 # Virtual Call Center Project
 
-This project implements a virtual call center with the ability to receive, assign, and manage customer calls using C++ programming. The call center consists of multiple servers that handle customer calls for a fixed duration and save call history. It utilizes linked lists, stacks, and queues to efficiently manage calls and server resources.
+This project implements a virtual call center with the ability to receive, assign, and manage customer calls using C++ programming. The call center consists of multiple servers that handle customer calls for a fixed duration and save call history. It utilizes Queues to efficiently manage calls and server resources.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
