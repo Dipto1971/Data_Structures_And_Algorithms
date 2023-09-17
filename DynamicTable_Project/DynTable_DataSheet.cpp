@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
 using namespace std;
 
 // Struct for the dynamic 2D array
@@ -62,12 +67,23 @@ void deleteData(Dynamic2DArray &dynArray, int row, int col) {
     dynArray.data[row - 1][col - 1] = -1; // Mark the data as deleted (-1)
 }
 
+// Function to delete an entire row and deallocate memory
+void deleteRow(Dynamic2DArray &dynArray, int row) {
+    if (row < 1 || row > dynArray.data.size()) {
+        cout << "Invalid row index" << endl;
+        return;
+    }
+
+    // Erase the row from the data vector
+    dynArray.data.erase(dynArray.data.begin() + row - 1);
+}
+
 // Function to display the table names (topics) with their corresponding keys
 void displayTopics(const Dynamic2DArray &dynArray) {
     cout << "Table Names and Keys:" << endl;
     cout << "|";
     for (size_t i = 0; i < dynArray.topics.size(); i++) {
-        cout <<"(" << i + 1 << ")" << " " << dynArray.topics[i] << " |";
+        cout << "(" << i + 1 << ")" << " " << dynArray.topics[i] << " |";
     }
     cout << endl;
 }
@@ -84,9 +100,9 @@ void displayTable(const Dynamic2DArray &dynArray) {
     cout << endl;
 
     // Display data
-    for (const vector<int> &row : dynArray.data) {
+    for (size_t i = 0; i < dynArray.data.size(); i++) {
         cout << "|";
-        for (int value : row) {
+        for (int value : dynArray.data[i]) {
             if (value == -1) {
                 cout << " " << "Deleted" << " |"; // Display "Deleted" for deleted data
             } else {
@@ -98,9 +114,105 @@ void displayTable(const Dynamic2DArray &dynArray) {
     cout << endl;
 }
 
+// Function to enter specific data for one entire row
+void enterSpecificDataRow(Dynamic2DArray &dynArray, size_t rowIndex) {
+    cout << "\nEnter Data for Row " << rowIndex + 1 << ":" << endl;
+
+    for (size_t i = 0; i < dynArray.topics.size(); i++) {
+        int value;
+        cout << "Enter data for topic (" << i + 1 << ") " << dynArray.topics[i] << ": ";
+        cin >> value;
+        insertData(dynArray, rowIndex + 1, i + 1, value);
+    }
+}
+
+// Function to enter specific data for all rows
+void enterSpecificData(Dynamic2DArray &dynArray) {
+    int numRowsToAdd;
+    cout << "Enter the number of rows to add data for: ";
+    cin >> numRowsToAdd;
+
+    for (int i = 0; i < numRowsToAdd; i++) {
+        enterSpecificDataRow(dynArray, dynArray.data.size());
+    }
+}
+
+// Function to save data to a text file
+void saveDataToFile(const Dynamic2DArray &dynArray, const string &filename) {
+    ofstream file(filename);
+    if (!file.is_open()) {
+        cout << "Failed to open the file for saving." << endl;
+        return;
+    }
+
+    // Save topics
+    for (size_t i = 0; i < dynArray.topics.size(); i++) {
+        file << dynArray.topics[i];
+        if (i < dynArray.topics.size() - 1) {
+            file << " ";
+        }
+    }
+    file << endl;
+
+    // Save data
+    for (size_t i = 0; i < dynArray.data.size(); i++) {
+        for (size_t j = 0; j < dynArray.data[i].size(); j++) {
+            file << dynArray.data[i][j];
+            if (j < dynArray.data[i].size() - 1) {
+                file << " ";
+            }
+        }
+        file << endl;
+    }
+
+    file.close();
+    cout << "Data saved to " << filename << endl;
+}
+
+// Function to load data from a text file
+void loadDataFromFile(Dynamic2DArray &dynArray, const string &filename) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Failed to open the file for loading." << endl;
+        return;
+    }
+
+    // Clear existing data
+    dynArray.data.clear();
+    dynArray.topics.clear();
+
+    // Load topics
+    string topicLine;
+    getline(file, topicLine);
+    stringstream topicStream(topicLine);
+    string topic;
+    while (topicStream >> topic) {
+        dynArray.topics.push_back(topic);
+    }
+
+    // Load data
+    string dataLine;
+    while (getline(file, dataLine)) {
+        stringstream dataStream(dataLine);
+        vector<int> row;
+        int value;
+        while (dataStream >> value) {
+            row.push_back(value);
+        }
+        dynArray.data.push_back(row);
+    }
+
+    file.close();
+    cout << "Data loaded from " << filename << endl;
+}
+
 int main() {
     Dynamic2DArray dynArray;
     int choice;
+    string filename = "data.txt"; // Change the filename as needed
+
+    // Load data from the file at the start
+    loadDataFromFile(dynArray, filename);
 
     do {
         cout << "\n=========================================" << endl;
@@ -110,9 +222,13 @@ int main() {
         cout << "2. Insert Data" << endl;
         cout << "3. Delete Topic" << endl;
         cout << "4. Delete Data" << endl;
-        cout << "5. Display Table" << endl;
-        cout << "6. Display Topics" << endl;
-        cout << "7. Quit" << endl;
+        cout << "5. Delete Row" << endl;
+        cout << "6. Display Table" << endl;
+        cout << "7. Display Topics" << endl;
+        cout << "8. Enter Specific Data for All Rows" << endl;
+        cout << "9. Save Data to File" << endl;
+        cout << "10. Load Data from File" << endl;
+        cout << "11. Quit" << endl;
         cout << "=========================================" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -147,18 +263,34 @@ int main() {
                 deleteData(dynArray, row, col);
                 break;
             }
-            case 5:
+            case 5: {
+                int row;
+                cout << "Enter the row index to delete: ";
+                cin >> row;
+                deleteRow(dynArray, row);
+                break;
+            }
+            case 6:
                 displayTable(dynArray);
                 break;
-            case 6:
+            case 7:
                 displayTopics(dynArray);
                 break;
-            case 7:
+            case 8:
+                enterSpecificData(dynArray);
+                break;
+            case 9:
+                saveDataToFile(dynArray, "Data.txt");
+                break;
+            case 10:
+                loadDataFromFile(dynArray, "Data.txt");
+                break;
+            case 11:
                 break;
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
-    } while (choice != 7);
+    } while (choice != 11);
 
     return 0;
 }
