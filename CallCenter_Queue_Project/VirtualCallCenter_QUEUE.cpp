@@ -44,7 +44,7 @@ void enqueue(VirtualCallCenter &callCenter, int id, int duration) {
     }
     callCenter.rear++;
     callCenter.customerQueue[callCenter.rear] = call;
-    
+
     // Automatically assign calls to servers based on load (less loaded server first).
     for (int i = 0; i < NUM_SERVERS; i++) {
         if (callCenter.servers[i].isFree) {
@@ -98,6 +98,24 @@ void forwardCallsManually(VirtualCallCenter &callCenter) {
     }
 }
 
+void displayCallCounts(VirtualCallCenter &callCenter) {
+    cout << "Call Counts for Servers:" << endl;
+    for (int i = 0; i < NUM_SERVERS; i++) {
+        cout << "Server " << i + 1 << ": " << callCenter.servers[i].callCount << " calls." << endl;
+    }
+}
+
+void showMenu() {
+    cout << "\n=== Virtual Call Center Menu ===" << endl;
+    cout << "1. Enter a Call (Automatic Assignment)" << endl;
+    cout << "2. Check Total Pending Calls" << endl;
+    cout << "3. Check Time Left for Servers" << endl;
+    cout << "4. Forward Calls Manually" << endl;
+    cout << "5. Display Call Counts for Servers" << endl;
+    cout << "6. Exit" << endl;
+    cout << "Enter your choice: ";
+}
+
 int main() {
     VirtualCallCenter callCenter;
     initialize(callCenter);
@@ -106,14 +124,8 @@ int main() {
 
     while (true) {
         updateServerStatus(callCenter);
-        
-        cout << "\nMenu:" << endl;
-        cout << "1. Enter a call (Automatic Assignment)" << endl;
-        cout << "2. Show total pending calls" << endl;
-        cout << "3. Check time left for servers to become free" << endl;
-        cout << "4. Forward calls manually" << endl;
-        cout << "5. Exit" << endl;
-        cout << "Enter your choice: ";
+
+        showMenu();
         cin >> choice;
 
         switch (choice) {
@@ -136,6 +148,9 @@ int main() {
                 forwardCallsManually(callCenter);
                 break;
             case 5:
+                displayCallCounts(callCenter);
+                break;
+            case 6:
                 exit(0);
             default:
                 cout << "Invalid choice. Please try again." << endl;
