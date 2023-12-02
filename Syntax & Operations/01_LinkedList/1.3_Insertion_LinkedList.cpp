@@ -1,86 +1,75 @@
-#include<stdio.h>
-#include<stdlib.h>
+// Iterative C++ program to reverse a linked list
+#include <bits/stdc++.h>
+using namespace std;
 
-struct node{
-    int data;
-    struct node *next;
+/* Link list node */
+struct Node {
+	int data;
+	struct Node* next;
+	Node(int data)
+	{
+		this->data = data;
+		next = NULL;
+	}
 };
 
-struct node *head = NULL;
+struct LinkedList {
+	Node* head;
+	LinkedList() { head = NULL; }
 
-struct node *insertAtFirst(struct node *head, int data){ // passing head node & data
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    ptr-> next = head; //ptr will be new head, so it's next element address will be connected with head's address
-    ptr -> data = data;
+	/* Function to reverse the linked list */
+	void reverse()
+	{
+		// Initialize current, previous and next pointers
+		Node* current = head;
+		Node *prev = NULL, *next = NULL;
 
-    return ptr; //ptr is the new head now
+		while (current != NULL) {
+			// Store next
+			next = current->next;
+			// Reverse current node's pointer
+			current->next = prev;
+			// Move pointers one position ahead.
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+
+	/* Function to print linked list */
+	void print()
+	{
+		struct Node* temp = head;
+		while (temp != NULL) {
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+	}
+
+	void push(int data)
+	{
+		Node* temp = new Node(data);
+		temp->next = head;
+		head = temp;
+	}
+};
+
+/* Driver code*/
+int main()
+{
+	/* Start with the empty list */
+	LinkedList ll;
+	ll.push(20);
+	ll.push(4);
+	ll.push(15);
+	ll.push(85);
+
+	cout << "Given linked list\n";
+	ll.print();
+
+	ll.reverse();
+
+	cout << "\nReversed linked list \n";
+	ll.print();
+	return 0;
 }
-
-struct node *insertAtIndex(struct  node *head, int data, int index){
-    // index is the address of which we want
-    struct node *ptr = (struct node*) malloc(sizeof(struct node));
-    //problem is we don't know where the index is, so we will run a while loop to reach there
-
-    struct node *p = head; //reserving head Node
-
-    int i=0;
-    while(i!= index-1){
-        p= p-> next;
-        i++;
-    }
-    ptr-> data = data;
-    ptr-> next = p-> next;
-    p->next = ptr;
-
-    /* p-next value transeferred to ptr-next &
-    p-next got the address of ptr*/
-    return head;
-}
-
-struct node *insertAtEnd(struct node *head, int data){
-    struct node *ptr = (struct node*) malloc(sizeof(struct node));
-    ptr -> data = data;
-    struct node *p = head;
-
-    while(p -> next != NULL){
-        p = p-> next;
-    }
-    p->next = ptr;
-    ptr -> next = NULL;
-
-    return head;
-}
-
-struct node *insertAfterNode(struct node *prevNode, int data){
-    struct node *ptr = (struct node*) malloc(sizeof(struct node));
-
-    ptr-> data = data;
-    ptr -> next = prevNode -> next;
-    prevNode -> next = ptr;
-    return head;
-}
-
-int main(){
-    struct node *head;
-    struct node *second;
-    struct node *third;
-    
-    head= (struct node*) malloc(sizeof (struct node)); 
-    second= (struct node*) malloc(sizeof (struct node));
-    third= (struct node*) malloc(sizeof (struct node));
-
-    //Once we do this kind of dynamic memory allocation, we can link Nodes
-    
-    //Link first and second Nodes and so on..
-    head -> data = 7;
-    head -> next = second;
-
-    second -> data = 77;
-    second -> next = third;
-
-    third -> data = 78;
-    third -> next = NULL;
-
-}
-
-
