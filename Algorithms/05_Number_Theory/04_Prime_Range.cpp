@@ -18,9 +18,8 @@ bool isPrime(int n) {
     return true;
 }
 
-// Function to find the highest occurring digit in prime numbers in the range L to R
 int highestOccurringDigit(int L, int R) {
-    std::vector<int> digitFreq(10, 0);
+    vector<int> digitFreq(10, 0);
 
     for (int i = L; i <= R; ++i) {
         if (isPrime(i)) {
@@ -49,9 +48,9 @@ int main() {
     int result = highestOccurringDigit(L, R);
 
     if (result == -1)
-        std::cout << "No prime numbers found between " << L << " and " << R << std::endl;
+        cout << "No prime numbers found between " << L << " and " << R << endl;
     else
-        std::cout << "Highest occurring digit in prime numbers between " << L << " and " << R << " is: " << result << std::endl;
+        cout << "Highest occurring digit in prime numbers between " << L << " and " << R << " is: " << result << endl;
 
     return 0;
 }

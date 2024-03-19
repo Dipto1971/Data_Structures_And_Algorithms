@@ -35,11 +35,11 @@ void printJobScheduling(Job arr[], int n)
     int profit = 0;
     
     for (int i = 0; i < n; i++) {
-        cout << "Last possible slot for job " << arr[i].id << " is: " << min(n, arr[i].dead)-1 << endl;// Last possible slot for job the job i
+        cout << "Last possible slot for job " << arr[i].id << " is: " << min(n, arr[i].dead) << endl;// Last possible slot for job the job i
         for (int j = min(n, arr[i].dead) - 1; j >= 0; j--) {
             // Free slot found
             if (slot[j] == false) {
-                cout << "Slot " << j << " is free for job " << arr[i].id << endl;
+                cout << "Slot " << j + 1<< " is free for job " << arr[i].id<< endl;
                 result[j] = i; // Add this job to result
                 slot[j] = true; // Make this slot occupied
                 profit += arr[i].profit; // Add profit of current job to result
@@ -77,11 +77,12 @@ void printJobScheduling(Job arr[], int n)
 
 int main()
 {
-    Job arr[] = { { 'a', 2, 100 },
-                  { 'b', 1, 19 },
-                  { 'c', 2, 27 },
-                  { 'd', 1, 25 },
-                  { 'e', 3, 15 } };
+    Job arr[] = { { 'a', 5, 200 },
+                  { 'b', 3, 180 },
+                  { 'c', 3, 190 },
+                  { 'd', 2, 300 },
+                  { 'e', 4, 120 },
+                  { 'f', 2, 100 } };
    
     int n = sizeof(arr) / sizeof(arr[0]);
     cout << "Following is maximum profit sequence of jobs "
