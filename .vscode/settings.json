@@ -4,7 +4,11 @@
     "ostream": "cpp",
     "new": "cpp",
     "fstream": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "initializer_list": "cpp",
+    "vector": "cpp",
+    "xstring": "cpp",
+    "xutility": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
