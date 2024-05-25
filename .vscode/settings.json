@@ -8,7 +8,8 @@
     "initializer_list": "cpp",
     "vector": "cpp",
     "xstring": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "format": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
