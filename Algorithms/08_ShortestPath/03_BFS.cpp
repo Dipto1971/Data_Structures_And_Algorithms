@@ -35,3 +35,21 @@ void BFSDis (vector<int> adj[], int V){
     }
 }
 
+int main(){
+    int V = 5;
+    vector<int> adj[V];
+
+    adj[0].push_back(1);
+    adj[0].push_back(2);
+    adj[1].push_back(2);
+    adj[2].push_back(0);
+    adj[2].push_back(3);
+    adj[3].push_back(3);
+    adj[4].push_back(4);
+
+    cout << "Following is Breadth First Traversal: " << endl;
+    BFSDis(adj, V);
+
+    return 0;
+}
+
