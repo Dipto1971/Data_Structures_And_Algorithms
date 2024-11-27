@@ -74,6 +74,7 @@ void JohnsonAlgorithm(vector<vector<int>> graph) {
         for (int j = 0; j < graph[i].size(); j++) {
             if (graph[i][j] != 0 && graph[i][j] != INF) {
                 edges.push_back(make_tuple(i, j, graph[i][j]));
+                // this consists of the edge from i to j with weight graph[i][j]
             }
         }
     }
